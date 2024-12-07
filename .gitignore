@@ -1,7 +1,28 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-/open-weather.client/README.md
-/open-weather.client/CHANGELOG.md
-/open-weather.Server/CHANGELOG.md
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+bin
+obj
+.vs

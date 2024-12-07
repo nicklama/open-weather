@@ -1,1 +1,0 @@
-C:\Users\NickL\source\repos\open-weather\open-weather.client\obj\Debug\open-weather.client.esproj.CoreCompileInputs.cache
