@@ -25,7 +25,7 @@ namespace open_weather.Server.Services
 
 			if (!response.IsSuccessStatusCode)
 			{
-				throw new Exception("Failed to get weather data");
+				throw new Exception($"Failed to get data from the Open Weather API: {response.ReasonPhrase}");
 			}
 
 			var data = await response.Content.ReadAsStringAsync();

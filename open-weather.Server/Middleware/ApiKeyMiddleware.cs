@@ -1,4 +1,6 @@
-﻿namespace open_weather.Server.Middleware
+﻿using System.Text.Json;
+
+namespace open_weather.Server.Middleware
 {
 	public class ApiKeyMiddleware
 	{
@@ -29,7 +31,12 @@
 			{
 				// Otherwise return a 401 unauthorised response if the key is invalid
 				context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-				await context.Response.WriteAsync($"Unauthorized: Invalid API Key ({inputApiKey})");
+				var response = new
+				{
+					error = true,
+					message = $"Unauthorized: Invalid API Key ({inputApiKey})"
+				};
+				await context.Response.WriteAsync(JsonSerializer.Serialize(response));
 				return;
 			}
 			

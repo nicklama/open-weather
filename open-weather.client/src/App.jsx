@@ -21,12 +21,28 @@ function App() {
     );
     
     async function populateWeatherData(city, country) {
-        console.log(city + ", " + country);
-        const response = await fetch('openweather?location=' + city + "," + country);
-        const data = await response.json();
-        //let data = { description: "cloudy" };
-        console.log(data.description);
-        setWeather(data);
+        try {
+            console.log(city + ", " + country);
+            const response = await fetch(`openweather?city=${city}&country=${country}`, {
+                headers: {
+                    "ApiKey": "myValidApiKey1",
+                }
+            });
+            const data = await response.json();
+            console.log(data);
+
+            // Check for HTTP errors in the response and alert the user
+            if (!response.ok) {
+                if (data.message) alert(data.message);
+                else alert("An unextected error has occured: " + response.statusText);
+            }
+
+            //console.log(data.description);
+            setWeather(data);
+        }
+        catch (error) {
+            alert(error);
+        }
     }
 }
 
