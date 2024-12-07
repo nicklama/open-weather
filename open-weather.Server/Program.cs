@@ -1,5 +1,7 @@
 
+using open_weather.Server.Middleware;
 using open_weather.Server.Services;
+using System.Text.Json;
 
 namespace open_weather.Server
 {
@@ -16,6 +18,11 @@ namespace open_weather.Server
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
+			builder.Services.AddSingleton(new JsonSerializerOptions
+			{
+				// Register JsonSerializerOptions and allow case insensitive json fields
+				PropertyNameCaseInsensitive = true
+			});
 
 			var app = builder.Build();
 
@@ -32,7 +39,8 @@ namespace open_weather.Server
 			app.UseHttpsRedirection();
 
 			app.UseAuthorization();
-
+			app.UseMiddleware<ApiKeyMiddleware>(); // Register the API key authorisation Middleware
+			app.UseMiddleware<RateLimitMiddleware>(5, TimeSpan.FromHours(1)); // Register the rate limiter middleware and restrict to 5 requests per hour
 
 			app.MapControllers();
 

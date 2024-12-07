@@ -15,11 +15,11 @@ namespace open_weather.Server.Controllers
 		}
 
 		[HttpGet(Name = "GetOpenWeather")]
-		public async Task<IActionResult> GetWeather(string location)
+		public async Task<IActionResult> GetWeather(string city, string country)
 		{
 			try
 			{
-				var weather = await _openWeatherService.GetOpenWeatherAsync(location);
+				var weather = await _openWeatherService.GetOpenWeatherAsync(city, country);
 				return Ok(weather);
 			}
 			catch (Exception ex)

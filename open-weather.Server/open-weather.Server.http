@@ -1,8 +1,11 @@
 # Testing the endpoint
 @open_weather.Server_HostAddress = http://localhost:5174
-@location = melbourne,aus
+@city = tokyo
+@country = japan
+@apiKey = myValidApiKey1
 
-GET {{open_weather.Server_HostAddress}}/openweather/?location={{location}}
+GET {{open_weather.Server_HostAddress}}/openweather/?city={{city}}&country={{country}}
+ApiKey: {{apikey}}
 Accept: application/json
 
 ###

@@ -1,20 +1,25 @@
 ﻿using open_weather.Server.Models;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace open_weather.Server.Services
 {
 	public class OpenWeatherService
 	{
 		private readonly HttpClient _httpClient;
-		private readonly string _apiKey = "8b7535b42fe1c551f18028f64e8688f7";
+		private readonly IConfiguration _configuration;
+		private readonly JsonSerializerOptions _jsonOptions;
 
-		public OpenWeatherService(HttpClient httpClient)
+		public OpenWeatherService(HttpClient httpClient, IConfiguration configuration, JsonSerializerOptions jsonOptions)
 		{
 			_httpClient = httpClient;
+			_configuration = configuration;
+			_jsonOptions = jsonOptions;
 		}
-		public async Task<Weather> GetOpenWeatherAsync(string location)
+		public async Task<Weather> GetOpenWeatherAsync(string city, string country)
 		{
-			string url = $"https://api.openweathermap.org/data/2.5/weather?q={location}&appid={_apiKey}";
+			string? apiKey = _configuration["OpenWeather:ApiKey"];
+			string url = $"https://api.openweathermap.org/data/2.5/weather?q={city},{country}&appid={apiKey}";
 			
 			var response = await _httpClient.GetAsync(url);
 
@@ -25,11 +30,7 @@ namespace open_weather.Server.Services
 
 			var data = await response.Content.ReadAsStringAsync();
 
-			var options = new JsonSerializerOptions
-			{
-				PropertyNameCaseInsensitive = true
-			};
-			var fullResponse = JsonSerializer.Deserialize<OpenWeatherData>(data,options);
+			var fullResponse = JsonSerializer.Deserialize<OpenWeatherData>(data, _jsonOptions);
 
 			return new Weather
 			{
