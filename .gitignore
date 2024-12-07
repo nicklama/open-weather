@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/open-weather.client/README.md
+/open-weather.client/CHANGELOG.md
+/open-weather.Server/CHANGELOG.md

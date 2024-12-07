@@ -1,4 +1,6 @@
 
+using open_weather.Server.Services;
+
 namespace open_weather.Server
 {
 	public class Program
@@ -9,6 +11,7 @@ namespace open_weather.Server
 
 			// Add services to the container.
 
+			builder.Services.AddHttpClient<OpenWeatherService>(); // Register the OpenWeatherService
 			builder.Services.AddControllers();
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 			builder.Services.AddEndpointsApiExplorer();

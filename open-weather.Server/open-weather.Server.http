@@ -1,6 +1,8 @@
+# Testing the endpoint
 @open_weather.Server_HostAddress = http://localhost:5174
+@location = melbourne,aus
 
-GET {{open_weather.Server_HostAddress}}/weatherforecast/
+GET {{open_weather.Server_HostAddress}}/openweather/?location={{location}}
 Accept: application/json
 
 ###
