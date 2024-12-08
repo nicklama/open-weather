@@ -34,7 +34,7 @@ namespace open_weather.Server.Middleware
 				var response = new
 				{
 					error = true,
-					message = $"Unauthorized: Invalid API Key ({inputApiKey})"
+					message = $"Unauthorised: The API Key you have provided is not valid ({inputApiKey})"
 				};
 				await context.Response.WriteAsync(JsonSerializer.Serialize(response));
 				return;

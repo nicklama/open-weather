@@ -1,0 +1,30 @@
+label {
+    font-size: 1.5rem;
+}
+
+input {
+    font-size: 1.5rem;
+    margin: 1rem;
+    width: 25%;
+    border-radius: 1rem;
+    padding-left: 10px;
+}
+
+button {
+  border-radius: 2rem;
+  border: 1px solid transparent;
+  padding: 0.4em 2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  background-color: #FFEC0F;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}

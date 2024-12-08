@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './WeatherInput.css';
 
 function WeatherInput({ setSearch }) {
     // Inputs stored in state variables
@@ -19,13 +20,13 @@ function WeatherInput({ setSearch }) {
 
   return (
       <form onSubmit={(e) => e.preventDefault()}>
-          <label>City:</label>
+          <label htmlFor="city">City:</label>
           <input type="text" id="city" onChange={handleCity} placeholder="Enter a city" ></input>
 
-          <label>Country:</label>
+          <label htmlFor="country">Country:</label>
           <input type="text" id="country" onChange={handleCountry} placeholder="Enter a country" ></input>
 
-          <button onClick={handleSubmit}>Submit</button>
+          <button onClick={handleSubmit}>Go!</button>
       </form>
   );
 }

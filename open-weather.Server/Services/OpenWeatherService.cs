@@ -1,6 +1,5 @@
 ﻿using open_weather.Server.Models;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace open_weather.Server.Services
 {
@@ -25,7 +24,13 @@ namespace open_weather.Server.Services
 
 			if (!response.IsSuccessStatusCode)
 			{
-				throw new Exception($"Failed to get data from the Open Weather API: {response.ReasonPhrase}");
+				// Provide more detail for an invalid location
+				if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+				{
+					throw new Exception($"Sorry I could not find that location. Please check your spelling and try again.");
+				}
+				// Otherwise provide the ReasonPhrase to the user
+				throw new Exception($"Failed to get data from the Open Weather API. Reason: {response.ReasonPhrase}");
 			}
 
 			var data = await response.Content.ReadAsStringAsync();

@@ -27,8 +27,7 @@ namespace open_weather.Server.Controllers
 				var errorResponse = new
 				{
 					error = true,
-					message = "An unexpected server error has occurred, please try again later.",
-					details = ex.Message
+					message = ex.Message
 				};
 				// Return status code 500 for a generic internal server error
 				return StatusCode(500, errorResponse);

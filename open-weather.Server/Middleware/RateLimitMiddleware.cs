@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using Microsoft.AspNetCore.Components;
+using System.Collections.Concurrent;
 using System.Net.NetworkInformation;
 using System.Text.Json;
 
@@ -33,12 +34,13 @@ namespace open_weather.Server.Middleware
 			{
 				// Calculate the next time that endpoint can be called
 				var nextAvailableRequest = requestInfo.Requests.First() + _requestWindow;
+				var timeRemaining = nextAvailableRequest - DateTime.UtcNow;
 				// Return status code 429 due to too many requests
 				context.Response.StatusCode = StatusCodes.Status429TooManyRequests;
 				var response = new
 				{
 					error = true,
-					message = $"Too many requests. Please try again after {nextAvailableRequest.ToLocalTime()}."
+					message = $"Geez I'm exhausted! Please try again in {timeRemaining.Minutes} minutes."
 				};
 				await context.Response.WriteAsync(JsonSerializer.Serialize(response));
 				return;

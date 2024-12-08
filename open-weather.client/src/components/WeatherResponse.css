@@ -1,0 +1,15 @@
+img {
+    width: 20%;
+}
+
+.success > p {
+    margin-bottom: -25px;
+}
+
+.success > h3 {
+    margin-top: -25px;
+}
+
+.message {
+    margin-top: 100px;
+}
