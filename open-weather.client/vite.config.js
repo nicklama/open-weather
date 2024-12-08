@@ -12,6 +12,8 @@ const baseFolder =
         ? `${env.APPDATA}/ASP.NET/https`
         : `${env.HOME}/.aspnet/https`;
 
+fs.mkdirSync(baseFolder, { recursive: true }); // resolves HTTPS developer certificate issue
+
 const certificateName = "open-weather.client";
 const certFilePath = path.join(baseFolder, `${certificateName}.pem`);
 const keyFilePath = path.join(baseFolder, `${certificateName}.key`);

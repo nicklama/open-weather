@@ -17,9 +17,11 @@ namespace open_weather.Server.Services
 		}
 		public async Task<Weather> GetOpenWeatherAsync(string city, string country)
 		{
-			string? apiKey = _configuration["OpenWeather:ApiKey"];
+			// Get API key from the appsettings.json
+			string apiKey = _configuration["OpenWeather:ApiKey"] ?? "";
 			string url = $"https://api.openweathermap.org/data/2.5/weather?q={city},{country}&appid={apiKey}";
 			
+			// Call the OpenWeather API
 			var response = await _httpClient.GetAsync(url);
 
 			if (!response.IsSuccessStatusCode)
@@ -30,11 +32,12 @@ namespace open_weather.Server.Services
 					throw new Exception($"Sorry I could not find that location. Please check your spelling and try again.");
 				}
 				// Otherwise provide the ReasonPhrase to the user
-				throw new Exception($"Failed to get data from the Open Weather API. Reason: {response.ReasonPhrase}");
+				throw new Exception($"Failed to get data from the OpenWeather API. Reason: {response.ReasonPhrase}");
 			}
 
 			var data = await response.Content.ReadAsStringAsync();
 
+			// Deserialize the json response into an OpenWeatherData object
 			var fullResponse = JsonSerializer.Deserialize<OpenWeatherData>(data, _jsonOptions);
 
 			return new Weather

@@ -19,6 +19,7 @@ namespace open_weather.Server.Controllers
 		{
 			try
 			{
+				// Call the service and return an ok response if successful
 				var weather = await _openWeatherService.GetOpenWeatherAsync(city, country);
 				return Ok(weather);
 			}

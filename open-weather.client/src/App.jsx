@@ -7,6 +7,7 @@ function App() {
     const [search, setSearch] = useState({ country: "", city: "" });
     const [weather, setWeather] = useState({});
 
+    // Call populateWeatherData when the search variable is set
     useEffect(() => {
         if (search.city == "" && search.country == "") return; // Don't execute if search is empty
         populateWeatherData(search.city, search.country);
@@ -24,11 +25,13 @@ function App() {
     async function populateWeatherData(city, country) {
         try {
             //console.log(city + ", " + country);
+            // Call the back-end service with the input parameters and API key
             const response = await fetch(`openweather?city=${city}&country=${country}`, {
                 headers: {
                     "ApiKey": "myValidApiKey1",
                 }
             });
+            // Resolve the response promise in json format
             const data = await response.json();
             console.log(data);
 
