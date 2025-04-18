@@ -17,7 +17,7 @@ namespace open_weather.Server.Services
 		}
 		public async Task<Weather> GetOpenWeatherAsync(string city, string country)
 		{
-			// Get API key from the appsettings.json
+			// Get API key from the environment vars
 			string apiKey = _configuration["OpenWeather:ApiKey"] ?? "";
 			string url = $"https://api.openweathermap.org/data/2.5/weather?q={city},{country}&appid={apiKey}";
 			

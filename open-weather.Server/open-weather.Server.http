@@ -2,7 +2,7 @@
 @open_weather.Server_HostAddress = http://localhost:5174
 @city = tokyo
 @country = japan
-@apiKey = myValidApiKey1
+@apiKey = enterApiKey
 
 GET {{open_weather.Server_HostAddress}}/openweather/?city={{city}}&country={{country}}
 ApiKey: {{apikey}}

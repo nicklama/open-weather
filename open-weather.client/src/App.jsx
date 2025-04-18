@@ -26,9 +26,10 @@ function App() {
         try {
             //console.log(city + ", " + country);
             // Call the back-end service with the input parameters and API key
+            const apiKey = import.meta.env.VITE_APP_PUBLIC_KEY;
             const response = await fetch(`openweather?city=${city}&country=${country}`, {
                 headers: {
-                    "ApiKey": "myValidApiKey1",
+                    "ApiKey": apiKey,
                 }
             });
             // Resolve the response promise in json format

@@ -1,4 +1,3 @@
-
 using open_weather.Server.Middleware;
 using open_weather.Server.Services;
 using System.Text.Json;
@@ -11,8 +10,9 @@ namespace open_weather.Server
 		{
 			var builder = WebApplication.CreateBuilder(args);
 
-			// Add services to the container.
+			DotNetEnv.Env.Load();
 
+			// Add services to the container.
 			builder.Services.AddHttpClient<OpenWeatherService>(); // Register the OpenWeatherService
 			builder.Services.AddControllers();
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -23,6 +23,7 @@ namespace open_weather.Server
 				// Register JsonSerializerOptions and allow case insensitive json fields
 				PropertyNameCaseInsensitive = true
 			});
+			builder.Configuration.AddEnvironmentVariables(); // Read .env vars
 
 			var app = builder.Build();
 

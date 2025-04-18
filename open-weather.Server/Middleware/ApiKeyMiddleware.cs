@@ -18,8 +18,9 @@ namespace open_weather.Server.Middleware
 			// Get API key from the request
 			string inputApiKey = context.Request.Headers["ApiKey"].FirstOrDefault() ?? "";
 
-			// Get the valid keys from the appsettings config
-			var validKeys = _configuration.GetSection("ApiKeys").Get<List<string>>() ?? [];
+			// Get the valid phrase from the environment vars and generate 5 valid keys
+			var validPhrase = _configuration["ApiKey:Phrase"] ?? "";
+			var validKeys = Enumerable.Range(1, 5).Select(i => $"{validPhrase}{i}").ToArray();
 
 			// Check the inputted API key
 			if (!string.IsNullOrEmpty(inputApiKey) && validKeys.Contains(inputApiKey))
