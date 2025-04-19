@@ -27,7 +27,9 @@ function App() {
             //console.log(city + ", " + country);
             // Call the back-end service with the input parameters and API key
             const apiKey = import.meta.env.VITE_APP_PUBLIC_KEY;
-            const response = await fetch(`openweather?city=${city}&country=${country}`, {
+            const baseUrl = import.meta.env.VITE_APP_API_URL;
+            const funcKey = import.meta.env.VITE_AZ_FUNCTION_KEY;
+            const response = await fetch(`${baseUrl}?city=${city}&country=${country}&code=${funcKey}`, {
                 headers: {
                     "ApiKey": apiKey,
                 }
