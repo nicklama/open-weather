@@ -2,7 +2,9 @@
 
 ## Introduction
 
-This application allows users to fetch the current weather description from the OpenWeather API by providing a city and country. The project consists of a ReactJS + Vite front-end which handles the user inputs and presentation, combined with a ASP.NET back-end service which manages all the external API calls.
+This application allows users to fetch the current weather description from the OpenWeather API by providing a city and country. The project consists of a ReactJS + Vite front-end which handles the user inputs and presentation, combined with a ASP.NET 8 back-end service (hosted in Azure) which manages all the external API calls, authentication and rate-limiting.
+
+<img width="1024" alt="OpenWeather Frontpage" src="https://github.com/user-attachments/assets/a1a600e6-3dd5-41e3-9f7a-ca06dbda83fb">
 
 ### Front-end
 
@@ -18,7 +20,14 @@ This application allows users to fetch the current weather description from the 
 -   [x] Feedback is provided when the limit is reached
 -   [x] Takes inputs from the front-end and calls the external OpenWeather API
 
-## How to Build and Run
+### Azure Functions (HTTP trigger)
+-   [x] Hosted in Azure via Function App (consumption plan)
+-   [x] Protected with custom API key authentication
+-   [x] Rate-limited via Azure API Management policies
+-   [x] Access restricted to APIM IP ranges only
+-   [x] Supports CORS and referrer validation for enhanced frontend security
+
+## How to Build and Run Manually
 
 1. Install the latest Node.js and npm versions [here](https://nodejs.org).
     - Versions developed with: Node.js (v22.12.0), npm (10.9.2)
