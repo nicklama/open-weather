@@ -30,7 +30,7 @@ namespace open_weather.Functions
         }
 
         [Function("GetWeather")]
-        public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = "weather")] HttpRequestData req)
+        public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "weather")] HttpRequestData req)
         {
 			// Parse the http query
 			var query = HttpUtility.ParseQueryString(req.Url.Query);

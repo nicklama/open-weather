@@ -28,8 +28,7 @@ function App() {
             // Call the back-end service with the input parameters and API key
             const apiKey = import.meta.env.VITE_APP_PUBLIC_KEY;
             const baseUrl = import.meta.env.VITE_APP_API_URL;
-            const funcKey = import.meta.env.VITE_AZ_FUNCTION_KEY;
-            const response = await fetch(`${baseUrl}?city=${city}&country=${country}&code=${funcKey}`, {
+            const response = await fetch(`${baseUrl}?city=${city}&country=${country}`, {
                 headers: {
                     "ApiKey": apiKey,
                 }
